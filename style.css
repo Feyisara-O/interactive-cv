@@ -1,0 +1,1096 @@
+/* =====================================================
+   FEYISARA CV — style.css
+   Sections:
+   1. Tokens / CSS Variables
+   2. Reset
+   3. Layout
+   4. Topbar & Nav
+   5. Theme Toggle
+   6. Hero
+   7. Summary
+   8. Section Base
+   9. Work Experience
+   10. Projects Grid
+   11. Skills Grid
+   12. Education Grid
+   13. Languages
+   14. Availability
+   15. Links & Download
+   16. Animations
+   17. Responsive — Tablet (max 768px)
+   18. Responsive — Mobile (max 480px)
+   19. Print Styles
+===================================================== */
+
+
+/* ─── 1. TOKENS ──────────────────────────────────────── */
+:root {
+  --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-card: 12px;
+  --radius-pill: 999px;
+}
+
+[data-theme="dark"] {
+  --bg:          #0b0b0e;
+  --bg-card:     #111115;
+  --bg-hover:    #18181d;
+  --border:      rgba(255, 255, 255, 0.07);
+  --border-acc:  rgba(196, 164, 108, 0.35);
+  --text-h:      #f0ece4;
+  --text-body:   #a8a49c;
+  --text-muted:  #5a5752;
+  --accent:      #c4a46c;
+  --accent-dim:  rgba(196, 164, 108, 0.10);
+  --tag-bg:      rgba(196, 164, 108, 0.08);
+  --tag-text:    #c4a46c;
+  --dot:         #c4a46c;
+  --shadow:      0 2px 40px rgba(0, 0, 0, 0.6);
+  --photo-ring:  rgba(196, 164, 108, 0.4);
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+[data-theme="light"] {
+  --bg:          #f7f4ef;
+  --bg-card:     #ffffff;
+  --bg-hover:    #f0ece5;
+  --border:      rgba(0, 0, 0, 0.07);
+  --border-acc:  rgba(139, 105, 60, 0.3);
+  --text-h:      #1a1714;
+  --text-body:   #4a4642;
+  --text-muted:  #9a9590;
+  --accent:      #8b693c;
+  --accent-dim:  rgba(139, 105, 60, 0.08);
+  --tag-bg:      rgba(139, 105, 60, 0.08);
+  --tag-text:    #8b693c;
+  --dot:         #8b693c;
+  --shadow:      0 2px 40px rgba(0, 0, 0, 0.08);
+  --photo-ring:  rgba(139, 105, 60, 0.4);
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+
+/* ─── 2. RESET ───────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text-body);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: var(--noise);
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* ─── 3. LAYOUT ──────────────────────────────────────── */
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem 6rem;
+  width: 100%;
+}
+
+
+/* ─── 4. TOPBAR & NAV ────────────────────────────────── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+  width: 100%;
+}
+
+.topbar-brand {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: nowrap;
+}
+
+.nav-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--accent);
+}
+
+/* ─── HAMBURGER ──────────────────────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--text-muted);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.2s;
+}
+
+.hamburger:hover span {
+  background: var(--accent);
+}
+
+/* Animate to X when open */
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ─── MOBILE MENU DRAWER ─────────────────────────────── */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobile-nav-link {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 8vw, 3rem);
+  font-weight: 300;
+  color: var(--text-muted);
+  text-transform: capitalize;
+  letter-spacing: 0.04em;
+  transition: color 0.2s, transform 0.2s;
+  padding: 0.25rem 1rem;
+}
+
+.mobile-nav-link:hover {
+  color: var(--accent);
+  transform: translateX(6px);
+}
+
+
+/* ─── 5. THEME TOGGLE ────────────────────────────────── */
+.toggle-btn {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-acc);
+  background: var(--accent-dim);
+  cursor: pointer;
+  transition: background var(--transition), border var(--transition);
+  flex-shrink: 0;
+}
+
+.toggle-btn::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform var(--transition), background var(--transition);
+}
+
+[data-theme="light"] .toggle-btn::after {
+  transform: translateX(22px);
+}
+
+.toggle-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.icon-moon { left: 6px;  opacity: 1; }
+.icon-sun  { right: 5px; opacity: 0; }
+
+[data-theme="light"] .icon-moon { opacity: 0; }
+[data-theme="light"] .icon-sun  { opacity: 1; }
+
+
+/* ─── 6. HERO ────────────────────────────────────────── */
+.hero {
+  padding: 3.5rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Photo */
+.hero-photo-wrap {
+  flex-shrink: 0;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.1s forwards;
+}
+
+.hero-photo {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 2px solid var(--photo-ring);
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: 0 0 0 4px var(--accent-dim);
+}
+
+.photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Fallback initials shown when image fails */
+.photo-initials {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--bg-card);
+}
+
+.hero-photo.photo-fallback .photo-img   { display: none; }
+.hero-photo.photo-fallback .photo-initials { display: flex; }
+
+/* Hero text */
+.hero-body {
+  opacity: 0;
+  animation: fadeUp 0.7s 0.2s forwards;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  color: var(--text-h);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.hero-name em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-location {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+/* Contact column */
+.hero-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.55rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.35s forwards;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.contact-item:hover {
+  color: var(--accent);
+}
+
+.contact-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+
+/* ─── 7. SUMMARY ─────────────────────────────────────── */
+.summary {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.summary p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-h);
+  max-width: 700px;
+}
+
+.summary p span {
+  color: var(--accent);
+  font-style: italic;
+}
+
+
+/* ─── 8. SECTION BASE ────────────────────────────────── */
+.section {
+  padding: 3rem 0 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Shared tag style */
+.tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: var(--tag-text);
+  background: var(--tag-bg);
+  border: 1px solid var(--border-acc);
+  padding: 0.2rem 0.55rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+
+/* ─── 9. WORK EXPERIENCE ─────────────────────────────── */
+.experience-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 2rem;
+  margin-bottom: 3rem;
+  transition: background var(--transition);
+}
+
+.experience-card:hover {
+  background: var(--bg-hover);
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.exp-company {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-h);
+  letter-spacing: -0.01em;
+}
+
+.exp-role {
+  font-size: 0.82rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  margin: 0.2rem 0;
+  font-weight: 500;
+}
+
+.exp-location {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.exp-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.exp-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.exp-duration {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+}
+
+.exp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.exp-list li {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--text-body);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.exp-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--dot);
+  opacity: 0.5;
+}
+
+.exp-list li strong {
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+
+/* ─── 10. PROJECTS GRID ──────────────────────────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.project-card {
+  background: var(--bg-card);
+  padding: 1.75rem;
+  transition: background var(--transition);
+}
+
+.project-card:hover {
+  background: var(--bg-hover);
+}
+
+/* Make last odd card span full width */
+.project-card:nth-child(odd):last-child {
+  grid-column: 1 / -1;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.project-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-h);
+  letter-spacing: -0.01em;
+}
+
+.project-type {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  background: var(--accent-dim);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.project-desc {
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--text-body);
+  margin-bottom: 1rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+
+/* ─── 11. SKILLS GRID ────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.skill-group {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  transition: background var(--transition);
+}
+
+.skill-group:hover {
+  background: var(--bg-hover);
+}
+
+.skill-group-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--text-body);
+}
+
+.skill-item::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--dot);
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+
+/* ─── 12. EDUCATION GRID ─────────────────────────────── */
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.edu-card {
+  background: var(--bg-card);
+  padding: 1.75rem;
+  transition: background var(--transition);
+}
+
+.edu-card:hover {
+  background: var(--bg-hover);
+}
+
+.edu-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.edu-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-bottom: 0.3rem;
+}
+
+.edu-institution {
+  font-size: 0.78rem;
+  color: var(--text-body);
+}
+
+.edu-year {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.63rem;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+}
+
+
+/* ─── 13. LANGUAGES ──────────────────────────────────── */
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.lang-card {
+  background: var(--bg-card);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: background var(--transition);
+}
+
+.lang-card:hover {
+  background: var(--bg-hover);
+}
+
+.lang-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.lang-level {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  width: fit-content;
+}
+
+.lang-level.fluent {
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.lang-level.learning {
+  color: var(--text-muted);
+  background: var(--border);
+}
+
+
+/* ─── 14. AVAILABILITY ───────────────────────────────── */
+.availability-strip {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-card);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.avail-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px var(--accent);
+  animation: pulse 2s infinite;
+}
+
+.avail-text {
+  font-size: 0.82rem;
+  color: var(--text-body);
+  line-height: 1.5;
+}
+
+.avail-text strong {
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--accent); }
+  50%       { opacity: 0.6; box-shadow: 0 0 12px var(--accent); }
+}
+
+
+/* ─── 15. LINKS & DOWNLOAD ───────────────────────────── */
+.links-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  align-items: center;
+}
+
+.link-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-pill);
+  transition: all 0.2s;
+  background: var(--bg-card);
+  white-space: nowrap;
+}
+
+.link-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.link-icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+
+.download-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+
+/* ─── 16. ANIMATIONS ─────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ─── 17. RESPONSIVE — TABLET (max 768px) ────────────── */
+@media (max-width: 768px) {
+  .topbar {
+    padding: 0.85rem 1.25rem;
+    gap: 0.75rem;
+  }
+
+  /* Hide desktop nav links, show hamburger */
+  .nav-link {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .page {
+    padding: 2rem 1.25rem 5rem;
+  }
+
+  .hero {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 1.5rem;
+  }
+
+  .hero-contact {
+    grid-column: 1 / -1;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lang-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ─── 18. RESPONSIVE — MOBILE (max 480px) ────────────── */
+@media (max-width: 480px) {
+  .topbar-brand {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: left;
+    padding: 2.5rem 0 2rem;
+  }
+
+  .hero-photo-wrap {
+    margin: 0 auto 0 0;
+  }
+
+  .hero-photo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
+
+  .hero-contact {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contact-item {
+    font-size: 0.62rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card:nth-child(odd):last-child {
+    grid-column: auto;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lang-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .links-row {
+    gap: 0.5rem;
+  }
+
+  .experience-card {
+    padding: 1.25rem;
+  }
+
+  .exp-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .exp-right {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .availability-strip {
+    padding: 1rem 1.1rem;
+  }
+}
+
+
+/* ─── 19. PRINT STYLES ───────────────────────────────── */
+@media print {
+  body::before    { display: none; }
+  .topbar         { display: none; }
+  .download-btn   { display: none; }
+  .toggle-btn     { display: none; }
+
+  body {
+    background: #fff;
+    color: #111;
+  }
+
+  .page {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero,
+  .summary,
+  .experience-card,
+  .project-card,
+  .edu-card,
+  .skill-group,
+  .lang-card {
+    break-inside: avoid;
+  }
+}
