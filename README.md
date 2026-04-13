@@ -195,13 +195,7 @@ To add your profile photo, place your image in the `cv/` folder and update `inde
 
 The circular frame, border, and initials fallback are handled automatically by CSS.
 
-To update contact details, search and replace the placeholder values in `index.html`:
 
-```
-your@email.com          → your real email
-linkedin.com/in/yourhandle  → your LinkedIn URL
-feyisaracodes.com       → your portfolio URL
-```
 
 ---
 
