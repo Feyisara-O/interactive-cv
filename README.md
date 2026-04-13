@@ -184,21 +184,6 @@ To deploy to GitHub Pages, push to your repository and enable Pages from the rep
 
 ---
 
-## Customisation
-
-To add your profile photo, place your image in the `cv/` folder and update `index.html`:
-
-```html
-<!-- Replace the src value with your image filename -->
-<img src="your-photo.jpg" alt="Okunola Mofeyisara Abiola" class="photo-img" />
-```
-
-The circular frame, border, and initials fallback are handled automatically by CSS.
-
-
-
----
-
 ## Author
 
 **Okunola Mofeyisara Abiola** — Frontend Developer & UI Designer
