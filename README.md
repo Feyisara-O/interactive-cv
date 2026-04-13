@@ -2,7 +2,7 @@
 
 A professionally designed, fully responsive interactive CV website built with vanilla HTML, CSS, and JavaScript. No frameworks. No dependencies. Just clean, purposeful code.
 
-**Live Demo:** [feyisaracodes.com/cv](https://feyisara-o.github.io/interactive-cv/) &nbsp;|&nbsp; **Portfolio:** [feyisaracodes.com](https://feyisara-o.github.io/feyisara-porfolio/) &nbsp;|&nbsp; **GitHub:** [@Feyisara-o](https://github.com/Feyisara-O)
+**Live Demo:** [feyisaracodes.com/cv](https://feyisara-o.github.io/interactive-cv/) &nbsp;|&nbsp; **Portfolio:** [Mofeyisara Okunola](https://feyisara-o.github.io/feyisara-porfolio/) &nbsp;|&nbsp; **GitHub:** [@Feyisara-o](https://github.com/Feyisara-O)
 
 ---
 
@@ -188,9 +188,9 @@ To deploy to GitHub Pages, push to your repository and enable Pages from the rep
 
 **Okunola Mofeyisara Abiola** — Frontend Developer & UI Designer
 
-- Portfolio: [feyisaracodes.com](https://feyisara-o.github.io/feyisara-porfolio/)
+- Portfolio: [Mofeyisara Okunola](https://feyisara-o.github.io/feyisara-porfolio/)
 - GitHub: [@Feyisara-o](https://github.com/Feyisara-O)
-- LinkedIn: [linkedin.com/in/yourhandle](https://www.linkedin.com/in/mofeyisara-okunola-73121b277?utm_source=share_via&utm_content=profile&utm_medium=member_android
+- LinkedIn: [Mofeyisara Okunola](https://www.linkedin.com/in/mofeyisara-okunola-73121b277?utm_source=share_via&utm_content=profile&utm_medium=member_android
 )
 
 ---
